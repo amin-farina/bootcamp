@@ -115,7 +115,7 @@
 
 
 // Ejercicio 8
-      // Implement map on a Prototype
+        // Implement map on a Prototype
       
       Array.prototype.myMap = function(callback) {
         const newArray = [];
@@ -127,15 +127,92 @@
 
 
 // Ejercicio 9
-      // 
-// Ejercicio 6
-// Ejercicio 6
-// Ejercicio 6
-// Ejercicio 6
-// Ejercicio 6
-// Ejercicio 6
-// Ejercicio 6
-// Ejercicio 6
+        // Use the filter Method to Extract Data from an Array
+            // WatchList it is a JSON with movie attributes
+            const filteredList = watchList
+             .filter(({ imdbRating }) => imdbRating >= 8.0)
+              .map(({ Title: title, imdbRating: rating }) => ({ title, rating }));
+            console.log(filteredList);
+
+
+// Ejercicio 10
+        // Implement the filter Method on a Prototype
+            Array.prototype.myFilter = function(callback) {
+              const newArray = [];
+              for (let i = 0; i < this.length; i++) {
+                if (Boolean(callback(this[i], i, this)) === true) {
+                  newArray.push(this[i]);
+                }
+              }
+              return newArray;
+            };
+
+// Ejercicio 11
+        // Return Part of an Array Using the slice Method
+            function sliceArray(anim, beginSlice, endSlice) {
+                return anim.slice(beginSlice, endSlice)
+            }
+            const inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
+            sliceArray(inputAnim, 1, 3);
+
+// Ejercicio 12
+        // Remove Elements from an Array Using slice Instead of splice
+
+            function nonMutatingSplice(cities) {
+              let newCities = cities; // or [...cities]
+              return newCities.slice(0,3);
+            }
+
+            const inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+            nonMutatingSplice(inputCities);
+
+// Ejercicio 13
+        // Combine Two Arrays Using the concat Method
+            function nonMutatingConcat(original, attach) {
+                return original.concat(attach)
+            }
+            const first = [1, 2, 3];
+            const second = [4, 5];
+            nonMutatingConcat(first, second);
+
+
+// Ejercicio 14
+        // Add Elements to the End of an Array Using concat Instead of push
+            function nonMutatingPush(original, newItem) {
+              return original.concat(newItem);
+            }
+            const first = [1, 2, 3];
+            const second = [4, 5];
+            nonMutatingPush(first, second);
+
+
+// Ejercicio 15
+        // Use the reduce Method to Analyze Data
+            // WatchList it is a JSON with movie attributes
+            function getRating(watchList) {
+              let averageRating;
+              let totalMovies =  watchList.filter(movie => movie.Director == "Christopher Nolan").length;
+              let filterList = watchList
+              .filter(movie => movie.Director == "Christopher Nolan")
+              .map (movie => Number(movie.imdbRating))
+              .reduce((suma, rating) => suma + rating );
+              averageRating = filterList / totalMovies
+              // Only change code above this line
+              return averageRating;
+            }
+            console.log(getRating(watchList));
+
+
+// Ejercicio 16
+// Ejercicio 17
+// Ejercicio 18
+// Ejercicio 19
+// Ejercicio 20
+// Ejercicio 21
+// Ejercicio 22
+// Ejercicio 23
+// Ejercicio 24
+
 
 
 
