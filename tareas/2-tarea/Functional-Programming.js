@@ -195,7 +195,7 @@
               let filterList = watchList
               .filter(movie => movie.Director == "Christopher Nolan")
               .map (movie => Number(movie.imdbRating))
-              .reduce((suma, rating) => suma + rating );
+              .reduce((sumaTot, rating) => sumaTot + rating );
               averageRating = filterList / totalMovies
               // Only change code above this line
               return averageRating;
@@ -204,27 +204,93 @@
 
 
 // Ejercicio 16
+        // Use Higher-Order Functions map, filter, or reduce to Solve a Complex Problem
+        const squareList = arr => {
+          let numInt = arr
+          .filter(numero => ((Number.isInteger(numero) == true) && numero >=0))
+          .reduce((resultado,numero) => {
+            return resultado.concat(numero*numero)
+            }, [] )
+            arr = numInt
+          return arr;
+        };
+        const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+        console.log(squaredIntegers);
+
+
 // Ejercicio 17
+        // Sort an Array Alphabetically using the sort Method
+            function alphabeticalOrder(arr) {
+              return arr.sort(function(a,b){
+                return a === b ? 0 : a < b ? -1 : 1;
+              })
+            }
+            alphabeticalOrder(["a", "d", "c", "a", "z", "g"]);
+
+
 // Ejercicio 18
+        // Return a Sorted Array Without Changing the Original Array
+            const globalArray = [5, 6, 3, 2, 9];
+            function nonMutatingSort(arr) {
+              let newArr = [...arr];
+              return newArr.sort(function (a,b) {
+                return a-b
+              })
+            }
+            nonMutatingSort(globalArray);
+
+
 // Ejercicio 19
+        // Split a String into an Array Using the split Method
+            function splitify(str) {
+              return str.split(/\W/)
+            }
+            splitify("Hello World,I-am code");
+
+
 // Ejercicio 20
+        // Combine an Array into a String Using the join Method
+            function sentensify(str) {
+              return str
+              .split(/\W/)
+              .join(" ")
+            }
+            sentensify("May-the-force-be-with-you");
+
 // Ejercicio 21
+        // Apply Functional Programming to Convert Strings to URL Slugs
+            function urlSlug(title) {
+              return title.toLowerCase().trim().split(/\s+/).join("-");  // trim() -> Delete spacing
+            }
+            urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone");
+
 // Ejercicio 22
+        // Use the every Method to Check that Every Element in an Array Meets a Criteria
+            function checkPositive(arr) {
+              return arr.every(function (current){
+                return current >= 0;
+              })
+            }
+            checkPositive([1, 2, 3, -4, 5]);
+
 // Ejercicio 23
+        // Use the some Method to Check that Any Elements in an Array Meet a Criteria
+            function checkPositive(arr) {
+              return arr.some(function(current){
+                return current >= 0
+              })
+            }
+            checkPositive([1, 2, 3, -4, 5]);
+
+
 // Ejercicio 24
+        // Introduction to Currying and Partial Application
+            function add(x) {
+              return function(y){
+                return function(z){
+                  return x + y + z 
+                }
+              }
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            add(10)(20)(30);
