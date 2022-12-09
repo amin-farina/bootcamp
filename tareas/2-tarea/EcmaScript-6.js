@@ -168,39 +168,141 @@
           bicycle.setGear(3);
           console.log(bicycle.gear);
 
+
 // Ejercicio 18
-      // 
+      // Use class Syntax to Define a Constructor Function
+            class Vegetable{
+              constructor(vegetal){
+                this.name = vegetal;
+              }
+            }
+            const carrot = new Vegetable('carrot');
+            console.log(carrot.name); // Should display 'carrot'
 
 
 // Ejercicio 19
+      // Use getters and setters to Control Access to an Object
+            class Thermostat  {
+              constructor (gradoF) {
+                this.fahrenheit  = gradoF;
+              }
+              get temperature() {
+                return (5 / 9) * (this.fahrenheit - 32);
+              }
+              set temperature(gradoC) {
+                this.fahrenheit = (gradoC * 9.0) / 5 + 32;
+              }
+            }
+            const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+            let temp = thermos.temperature; // 24.44 in Celsius
+            thermos.temperature = 26;
+            temp = thermos.temperature; // 26 in Celsius
 
 
 // Ejercicio 20
+      // Create a Module Script
+            <html>
+              <body>
+                <script type="module" src="index.js"></script>
+              </body>
+            </html>
 
 
 // Ejercicio 21
+      // Use export to Share a Code Block
+            const uppercaseString = (string) => {
+              return string.toUpperCase();
+            }
 
+            const lowercaseString = (string) => {
+              return string.toLowerCase()
+            }
 
+            export{uppercaseString,lowercaseString }
+            
+            
 // Ejercicio 22
+      // Reuse JavaScript Code Using import
+            import {uppercaseString, lowercaseString} from './string_functions.js'  
+
+            uppercaseString("hello");
+            lowercaseString("WORLD!");
 
 
 // Ejercicio 23
+      // Use * to Import Everything from a File
+            import * as stringFunctions from './string_functions.js'
+
+            stringFunctions.uppercaseString("hello");
+            stringFunctions.lowercaseString("WORLD!");
 
 
 // Ejercicio 24
+      // Create an Export Fallback with export default
+            export default function subtract(x, y) {
+              return x - y;
+            }
 
 
 // Ejercicio 25
+      // Import a Default Export
+            import subtract from './math_functions.js';
+            subtract(7,4);
 
 
 // Ejercicio 26
+      // Create a JavaScript Promise
+            const makeServerRequest = new Promise( (resolve, reject) =>{
+                  // body promise
+            })
 
-
+            
 // Ejercicio 27
+      // Complete a Promise with resolve and reject
+            const makeServerRequest = new Promise((resolve, reject) => {
+              // responseFromServer represents a response from a server
+              let responseFromServer;
 
+              if(responseFromServer) {
+                resolve("We got the data")
+              } else {  
+                reject("Data not received");
+              }
+            });
 
 // Ejercicio 28
+      // Handle a Fulfilled Promise with then
+            const makeServerRequest = new Promise((resolve, reject) => {
+              let responseFromServer = true;
 
+              if(responseFromServer) {
+                resolve("We got the data");
+              } else {  
+                reject("Data not received");
+              }
+            });
+
+            makeServerRequest.then(result =>{
+              return console.log(result)
+            })
 
 // Ejercicio 29
+      // Handle a Rejected Promise with catch
+            const makeServerRequest = new Promise((resolve, reject) => {
+              // responseFromServer is set to false to represent an unsuccessful response from a server
+              let responseFromServer = false;
 
+              if(responseFromServer) {
+                resolve("We got the data");
+              } else {  
+                reject("Data not received");
+              }
+            });
+
+            makeServerRequest.then(result => {
+              console.log(result);
+            });
+
+            makeServerRequest.catch(error => {
+              console.log(error)
+            })
