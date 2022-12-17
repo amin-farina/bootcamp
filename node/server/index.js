@@ -2,7 +2,44 @@ const http = require('http');
 const fs = require('fs');
 
 const server = http.createServer((request,response) => {
-    response.writeHead(200, "Success", {"Content-Type" : "application/pdf" });
+
+    // Example routes
+
+    switch(request.url){
+        case "/home":
+        case "/":
+            fs.readFile('./index.html', (err, data)=> {
+                if(err){
+                    console.log("Error de lectura, INDEX");
+                    response.end("Error");
+                }
+                response.writeHead(200, "Success", {"Content-Type" : "text/html" });
+                response.end(data)
+            }) 
+            break;
+        case "/contact":
+            fs.readFile('./contact.html', (err, data)=> {
+                if(err){
+                    console.log("Error de lectura, CONTACTO");
+                    response.end("Error");
+                }
+                response.writeHead(200, "Success", {"Content-Type" : "text/html" });
+                response.end(data)
+            }) 
+            break;
+        default:
+            const json = {
+                status: 400,
+                data: "Hubo un inconveniente",
+            };
+
+            response.writeHead(200, "Success", {"Content-Type" : "text/html" });
+            response.end(JSON.stringify(json))
+            break;
+        }
+
+
+
 
     //EXAMPLE PDF 
 
