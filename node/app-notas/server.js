@@ -6,7 +6,7 @@ const ejs = require('ejs');
 // DataBase data
 const url = "mongodb://127.0.0.1:27017/game-of-thrones";
 const dbName = "game-of-thrones";
-let db;
+
 
 
 // * Connect with database
@@ -17,6 +17,7 @@ MongoClient.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true} ,(err
     db = client;
     console.log("Conexion exitosa");
 })
+
 
 // ? Create new object for send database
 const addNewQuote = {
@@ -66,8 +67,13 @@ app.post("/add", (req,res)=>{
 // ! READ  
 app.get("/", (req, res)=>{
    async function reqFind(){
-    await MongoClient
+    await Quote.find()
+    .then(results =>{
+        res.render('index.ejs', {quotes: results})
+    })
+    // console.log(quotess);
    }
+   reqFind();
     res.sendFile( __dirname + '/index.html');
 })
 
