@@ -4,7 +4,7 @@
   "description": "Una app para agregar notas",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js "
+    "start": "node server.js "
   },
   "author": "",
   "license": "ISC",

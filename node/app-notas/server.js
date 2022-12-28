@@ -1,80 +1,37 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const MongoClient = require('mongoose');
-const ejs = require('ejs');
+const userRoute = require('./routes/route');
+const log = require('./middlewares/log');
+const authentication = require('./middlewares/authentication');
 
 // DataBase data
-const url = "mongodb://127.0.0.1:27017/game-of-thrones";
-const dbName = "game-of-thrones";
-
-
-
-// * Connect with database
-MongoClient.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true} ,(err, client)=>{
-    if(err) {
-        return console.log(err);
-    }
-    db = client;
-    console.log("Conexion exitosa");
-})
-
-
-// ? Create new object for send database
-const addNewQuote = {
-    name: String,
-    data: String
-}
-const Quote = MongoClient.model("Quotes", addNewQuote);
 
 
 // ? Create app
 const app = express(); // initialize express
-app.set('view engine', 'ejs')
+app.use(log);
+app.use(express.json())
+
+app.get("/", (req,res)=> {
+    res.send("Hola mundo estoy funcionando");
+})
+
+app.get("/users", authentication, userRoute)
+
+app.use(express.static('public'))
 
 
-app.use(bodyParser.urlencoded({extended: true}));
+// * Connect with database
+MongoClient.connect("mongodb://127.0.0.1:27017/users", (error) => {
+    if(error) {
+        return console.log("Ocurrio un error en la conexion en la base de datos", error);
+    }else{
+        console.log("Conexion exitosa");
+    }
+})
+
 
 app.listen(3000, () => {
     console.log('Escuchando en el puerto 3000')
 })
-
-
-
-
-// ! --------------------------- CRUD ---------------------------
-
-// ! CREATE
-app.post("/add", (req,res)=>{
-    console.log("Esta es la informacion ->", req.body);
-    const quote = new Quote({
-        name: req.body.name,
-        data: req.body.fecha
-    })
-    quote.save((err)=>{
-        if(err){
-           console.log(err);
-        }else{
-            res.status(200).json({message: "ok"});
-            res.render("quotes")
-        }
-        
-    })
-    res.send('Mensaje enviado con exito');
-    res.end(res.redirect("/"))
-
-})
-
-// ! READ  
-app.get("/", (req, res)=>{
-   async function reqFind(){
-    await Quote.find()
-    .then(results =>{
-        res.render('index.ejs', {quotes: results})
-    })
-    // console.log(quotess);
-   }
-   reqFind();
-    res.sendFile( __dirname + '/index.html');
-})
-
 
