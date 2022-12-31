@@ -49,7 +49,7 @@ taskRoutes.delete("/:name", (req, res)=>{
 
 
 taskRoutes.put("/:name", (req,res)=>{
-    taskModel.findOneAndUpdate({name:req.params.name},req.body,{new:true},(err,user)=>{
+    taskModel.findOneAndUpdate({name:req.params.name},req.body,{new:true},(err,data)=>{
         if(err){
             res.json({status: 500, data: err})
         }
