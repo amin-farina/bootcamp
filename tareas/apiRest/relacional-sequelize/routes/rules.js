@@ -1,6 +1,5 @@
 const express = require('express');
 const rulesModel = require('../models/rules');
-const userModel = require('../models/user');
 
 const rulesRoutes = express.Router();
 
@@ -39,7 +38,7 @@ rulesRoutes.post("/create", (req,res)=>{
 rulesRoutes.put("/:name", async(req,res)=>{
     const data = rulesModel.update(req.body, {
         where:{
-            name: req.body.name
+            name: req.params.name
         }
     });
 
@@ -49,9 +48,9 @@ rulesRoutes.put("/:name", async(req,res)=>{
 rulesRoutes.delete("/:name", async(req,res)=>{
     console.log("Delete === > ", req.body);
 
-    userModel.destroy({
+    rulesModel.destroy({
         where: {
-            name: req.body.name
+            name: req.params.name
         }
     }).then((data)=>{
         res.json({status: 200, data});
