@@ -26,7 +26,7 @@ route.post("/create", (req, res) => {
     user
     .save()
     .then((doc)=>{res.json({status: 200, data: doc})})
-    .catch(err => {res.json({status: 200, data: err})})
+    .catch(err => {res.json({status: 500, data: err})})
 })
 
 route.delete("/:id" , (req, res) => {
