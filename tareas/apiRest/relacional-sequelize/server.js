@@ -1,16 +1,18 @@
 const express = require('express');
 const db = require("./models");
 const apiRoute = require('./routes');
+const log = require('./middlewares/log');
+
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/", (req, res)=>{
+app.get("/",log, (req, res)=>{
     res.json({status: 200, data: []})
 })
 
-app.use("/api", apiRoute)
+app.use("/api",log, apiRoute)
 
 
 db.sync().then(()=>{
