@@ -1,5 +1,6 @@
 import db from "../db.js";
 import { DataTypes } from "sequelize";
+import Task from "./task.js"
 
 const User = db.define("User", {
     "id": {
@@ -14,5 +15,7 @@ const User = db.define("User", {
     "lastName": DataTypes.STRING,
     "address": DataTypes.STRING
 })
+
+User.Task = User.hasMany(Task)
 
 export default User;
