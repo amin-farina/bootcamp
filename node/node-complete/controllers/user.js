@@ -49,11 +49,11 @@ export const updateUser = async (req, res) => {
     }
 }
 
-export const createUserTask = async (req, res) => {
-    try{
-        const task = await User.createUserTask(req.body, req.params.userId);
-        res.json({task})
-    }catch(err){
-        res.status(500).json({err})
-    }
-}
+// export const createUserTask = async (req, res) => {
+//     try{
+//         const task = await User.createUserTask(req.body, req.params.userId);
+//         res.json({task})
+//     }catch(err){
+//         res.status(500).json({err})
+//     }
+// }

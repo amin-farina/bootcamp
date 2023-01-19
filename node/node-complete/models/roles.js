@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../db.js";
 
-const Rule = db.define("Rule", {
+const Rol = db.define("Rol", {
   "id": {
     primaryKey: true,
     type: DataTypes.INTEGER,
@@ -9,7 +9,7 @@ const Rule = db.define("Rule", {
   },
   "name": DataTypes.STRING,
   "description": DataTypes.STRING,
-  "estado": DataTypes.ENUM('iniciado', 'en proceso', 'finalizdo')
+
 });
 
-export default Rule;
+export default Rol;

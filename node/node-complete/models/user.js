@@ -16,6 +16,6 @@ const User = db.define("User", {
     "address": DataTypes.STRING
 })
 
-User.Task = User.hasMany(Task)
+// User.Task = User.hasMany(Task)
 
 export default User;

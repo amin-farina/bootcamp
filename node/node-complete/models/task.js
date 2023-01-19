@@ -13,5 +13,5 @@ const Task = db.define("Task",{
     "estado": DataTypes.ENUM('creado', 'en proceso', 'finalizado')
 })
 
-Task.User = Task.belongsTo(User)
+// Task.User = Task.belongsTo(User)
 export default Task;
